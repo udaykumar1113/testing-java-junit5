@@ -14,8 +14,8 @@ class IndexControllerTest {
     }
     @Test
     void index() {
-        assertEquals("index", indexController.index());
-        assertEquals("indexd", indexController.index(), "wrong view returned");
+        assertEquals("indexd", indexController.index());
+        assertEquals("indexx", indexController.index(), "wrong view returned");
     }
 
     @Test
