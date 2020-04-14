@@ -1,8 +1,10 @@
 package guru.springframework.sfgpetclinic.controllers;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.*;
 
 import java.time.Duration;
 
@@ -18,8 +20,8 @@ class IndexControllerTest {
     }
     @Test
     void index() {
-        assertEquals("indexd", indexController.index());
-        assertEquals("indexx", indexController.index(), "wrong view returned");
+        assertEquals("index", indexController.index());
+        assertEquals("index", indexController.index(), "wrong view returned");
     }
 
     @Test
@@ -34,12 +36,14 @@ class IndexControllerTest {
         assertThrows(ValueNotFoundException.class,() -> indexController.oopsHandler());
     }
 
+    @Disabled
     @Test
     @DisplayName("Normal Timeout Test")
     void testTimeout(){
         assertTimeout(Duration.ofMillis(200),() -> { Thread.sleep(5000);});
     }
 
+    @Disabled
     @Test
     @DisplayName("Preemptive Timeout Test")
     void testPreemptiveTimeout(){
@@ -54,5 +58,35 @@ class IndexControllerTest {
     @Test
     void testAssumptionTrueAssumptionIsTrue() {
         assumeTrue("GURU".equalsIgnoreCase("GURU"));
+    }
+
+    @EnabledOnOs(OS.MAC)
+    @Test
+    void testMeOnMacOS() {
+    }
+
+    @EnabledOnOs(OS.WINDOWS)
+    @Test
+    void testMeOnWindows() {
+    }
+
+    @EnabledOnJre(JRE.JAVA_9)
+    @Test
+    void testMeOnJava8() {
+    }
+
+    @EnabledOnJre(JRE.JAVA_11)
+    @Test
+    void testMeOnJava11() {
+    }
+
+    @EnabledIfEnvironmentVariable(named = "USERNAME", matches = "udayk")
+    @Test
+    void testIfUserUday() {
+    }
+
+    @EnabledIfEnvironmentVariable(named = "USERNAME", matches = "fred")
+    @Test
+    void testIfUserFred() {
     }
 }
