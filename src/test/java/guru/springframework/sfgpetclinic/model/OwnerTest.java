@@ -1,6 +1,8 @@
 package guru.springframework.sfgpetclinic.model;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,10 +15,16 @@ class OwnerTest {
 
         assertAll("Properties Test",
                 () -> assertAll("person properties",
-                    ()->assertEquals("Joes", owner.getFirstName()),
+                    ()->assertEquals("Joe", owner.getFirstName()),
                     ()->assertEquals("Silva", owner.getLastName())),
                 () -> assertAll("owner properties",
-                    ()->assertEquals("Arlingtons", owner.getCity()),
+                    ()->assertEquals("Arlington", owner.getCity()),
                     ()->assertEquals("Texas", owner.getAddress())));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"Spring", "Testing", "Guru"})
+    void testValueSource(String values){
+        System.out.println(values);
     }
 }
