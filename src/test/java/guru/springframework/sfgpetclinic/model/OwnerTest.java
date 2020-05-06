@@ -1,7 +1,9 @@
 package guru.springframework.sfgpetclinic.model;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -26,5 +28,12 @@ class OwnerTest {
     @ValueSource(strings = {"Spring", "Testing", "Guru"})
     void testValueSource(String values){
         System.out.println(values);
+    }
+
+    @ParameterizedTest(name="{displayName} - [{index}] - {arguments}")
+    @DisplayName("Enum Source Test")
+    @EnumSource(OwnerType.class)
+    void testEnumSource(OwnerType ownerType){
+        System.out.println(ownerType);
     }
 }
