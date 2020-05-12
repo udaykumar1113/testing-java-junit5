@@ -22,9 +22,9 @@ class PersonTest {
         Person person = new Person(1l, "Joe", "Silva");
         //then
         assertAll("Test set",
-                ()->assertEquals("Joe1", person.getFirstName(),"Wrong Fist name"),
+                ()->assertEquals("Joe", person.getFirstName(),"Wrong Fist name"),
                 ()->assertEquals("Silva", person.getLastName(), "Wrong Last Name"),
-                ()->assertEquals("Silva1", person.getLastName(), "Wrong Last Name"));
+                ()->assertEquals("Silva", person.getLastName(), "Wrong Last Name"));
     }
 
     @RepeatedTest(value = 10, name = "{displayName} : {currentRepetition} - {totalRepetitions}")
