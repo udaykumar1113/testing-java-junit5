@@ -10,6 +10,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.assertj.core.api.Assertions.assertThat;
 import java.util.Optional;
 
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -60,6 +61,16 @@ class SpecialitySDJpaServiceTest {
     void findByIdTest() {
         Speciality speciality = new Speciality();
         when(specialtyRepository.findById(1L)).thenReturn(Optional.of(speciality));
+        Speciality foundSpecialty = service.findById(1L);
+        assertThat(foundSpecialty).isNotNull();
+        verify(specialtyRepository).findById(1L);
+
+    }
+
+    @Test
+    void findByIdBddTest() {
+        Speciality speciality = new Speciality();
+        given(specialtyRepository.findById(1L)).willReturn(Optional.of(speciality));
         Speciality foundSpecialty = service.findById(1L);
         assertThat(foundSpecialty).isNotNull();
         verify(specialtyRepository).findById(1L);
